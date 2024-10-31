@@ -34,17 +34,27 @@ function App() {
     return (
         <Router>
             <div className='container mx-auto p-4'>
-                <header className='flex justify-between items-center'>
-                    <Link to='/' className='text-2xl font-bold'>
-                        ElegantShop
-                    </Link>
-                    <Link to='/cart' className='text-lg font-semibold relative'>
-                        Cart ({cartItems.reduce((sum, item) => sum + item.quantity, 0)})
-                    </Link>
+                <header className='flex flex-col'>
+                    <nav className='flex justify-between items-center bg-[#1882ff] p-4 rounded shadow-md mb-5'>
+                        <div className='flex space-x-4'>
+                            <Link to='/' className='text-white font-bold'>
+                                Home
+                            </Link>
+                            <Link to='/products' className='text-white'>
+                                Products
+                            </Link>
+                        </div>
+                        <Link to='/cart' className='text-lg font-semibold text-white relative'>
+                            Cart ({cartItems.reduce((sum, item) => sum + item.quantity, 0)})
+                        </Link>
+                    </nav>
                 </header>
                 <Routes>
-                    <Route path='/' element={<HomePage addToCart={addToCart}  removeFromCart={removeFromCart} updateQuantity={updateQuantity}/>} />
-                    <Route path='/products/:id' element={<ProductPage addToCart={addToCart} />} />
+                    <Route path='/' element={<HomePage addToCart={addToCart} removeFromCart={removeFromCart}
+                                                       updateQuantity={updateQuantity}/>}/>
+                    <Route path='//products' element={<HomePage addToCart={addToCart} removeFromCart={removeFromCart}
+                                                       updateQuantity={updateQuantity}/>}/>
+                    <Route path='/products/:id' element={<ProductPage addToCart={addToCart}/>}/>
                     <Route
                         path='/cart'
                         element={
